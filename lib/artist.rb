@@ -1,30 +1,24 @@
+require_relative './memorable.rb'
+require_relative './paramable.rb'
 require 'pry'
 
 class Artist
+  extend Memorable
+  include Paramable
+
   attr_accessor :name
   attr_reader :songs
 
-  @@artists = []
+  @@all = []
 
-  def self.find_by_name(name)
-    @@artists.detect{|a| a.name}
-  end
 
   def initialize
-    @@artists << self
+    @@all << self
     @songs = []
   end
 
   def self.all
-    @@artists
-  end
-
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    @@artists.count
+    @@all
   end
 
   def add_song(song)
