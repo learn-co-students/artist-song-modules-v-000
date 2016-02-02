@@ -3,6 +3,7 @@ require_relative '../lib/paramable.rb'
 require 'pry'
 
 class Artist
+  
   include Paramable
   extend Memorable
 
@@ -28,9 +29,5 @@ class Artist
   def add_songs(songs)
     songs.each { |song| add_song(song) }
   end
-
-  # def to_param
-  #   name.downcase.gsub(' ', '-')
-  # end
 
 end
