@@ -4,7 +4,7 @@ require_relative '../lib/paramable.rb'
 
 class Artist
   extend Memorable
-  extend Paramable
+  include Paramable
   attr_accessor :name
   attr_reader :songs
 
