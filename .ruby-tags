@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Artist	lib/artist.rb	/^class Artist$/;"	c
+Memorable	lib/memorable.rb	/^module Memorable$/;"	m
+Paramable	lib/paramable.rb	/^module Paramable$/;"	m
+Song	lib/song.rb	/^class Song$/;"	c
+add_song	lib/artist.rb	/^  def add_song(song)$/;"	f	class:Artist
+add_songs	lib/artist.rb	/^  def add_songs(songs)$/;"	f	class:Artist
+all	lib/artist.rb	/^  def self.all$/;"	F	class:Artist
+all	lib/song.rb	/^  def self.all$/;"	F	class:Song
+artist=	lib/song.rb	/^  def artist=(artist)$/;"	f	class:Song
+count	lib/memorable.rb	/^  def count$/;"	f	class:Memorable
+find_by_name	lib/memorable.rb	/^  def find_by_name(name)$/;"	f	class:Memorable
+initialize	lib/artist.rb	/^  def initialize$/;"	f	class:Artist
+initialize	lib/song.rb	/^  def initialize$/;"	f	class:Song
+reset_all	lib/memorable.rb	/^  def reset_all$/;"	f	class:Memorable
+to_param	lib/paramable.rb	/^  def to_param$/;"	f	class:Paramable
