@@ -1,10 +1,12 @@
 require_relative '../lib/memorable.rb'
+require_relative '../lib/paramable.rb'
 require 'pry'
 
 
 
 class Artist
 
+  include Paramable
   extend Memorable
 
   attr_accessor :name
@@ -12,7 +14,7 @@ class Artist
 
   @@artists = []
 
- 
+
 
   def initialize
     @@artists << self
@@ -23,7 +25,7 @@ class Artist
     @@artists
   end
 
-  
+
   def add_song(song)
     @songs << song
     song.artist = self
@@ -33,8 +35,5 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
+ 
 end
