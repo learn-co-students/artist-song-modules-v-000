@@ -3,7 +3,7 @@ module Memorable
   module ClassMethods
     
     def find_by_name(name)
-      self.all.detect{|a| a.name}
+      self.all.detect{|o| o.name}
     end
 
     def reset_all
@@ -14,13 +14,5 @@ module Memorable
       self.all.count
     end
   end # ClassMethods
-
-  module InstanceMethods
-    
-    def to_param
-      name.downcase.gsub(' ', '-')
-    end
-  
-  end # InstanceMethods
 
 end #Memorable
