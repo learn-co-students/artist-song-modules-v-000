@@ -1,8 +1,10 @@
 require 'pry'
 require_relative '../lib/memorable.rb'
+require_relative '../lib/paramble.rb'
 
 class Artist
-  extend Memorable::ClassMethods
+  include Paramble
+  extend Memorable
 
   attr_accessor :name
   attr_reader :songs
@@ -25,10 +27,6 @@ class Artist
 
   def add_songs(songs)
     songs.each { |song| add_song(song) }
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
   end
 
 end
