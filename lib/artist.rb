@@ -1,14 +1,20 @@
-require 'pry'
+# require_relative './memorable.rb'
+
+require_relative '../lib/memorable.rb'
+
+# require 'pry'
 
 class Artist
   attr_accessor :name
   attr_reader :songs
 
+include Memorable
+
   @@artists = []
 
-  def self.find_by_name(name)
-    @@artists.detect{|a| a.name}
-  end
+  # def self.find_by_name(name)
+  #   @@artists.detect{|a| a.name}
+  # end
 
   def initialize
     @@artists << self
@@ -19,13 +25,13 @@ class Artist
     @@artists
   end
 
-  def self.reset_all
-    self.all.clear
-  end
+  # def self.reset_all
+  #   self.all.clear
+  # end
 
-  def self.count
-    @@artists.count
-  end
+  # def self.count
+  #   @@artists.count
+  # end
 
   def add_song(song)
     @songs << song
