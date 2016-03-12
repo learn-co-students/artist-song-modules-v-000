@@ -1,5 +1,7 @@
 require_relative './memorable.rb'
 
+require_relative './paramble.rb'
+
 # require 'pry'
 
 class Song
@@ -8,32 +10,24 @@ class Song
 
   @@songs = []
 
-
-
 extend Memorable
+
+include Paramble
 
   def initialize
     @@songs << self
   end
 
-  # def self.find_by_name(name)
-  #   @@songs.detect{|a| a.name}
-  # end
-
+  def self.all
+    @@songs
+  end
+  
   def artist=(artist)
     @artist = artist
   end
 
-  # def self.reset_all
-  #   @@songs.clear
-  # end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  # def self.count
-  #   self.all.count
+  # def to_param
+  #   name.downcase.gsub(' ', '-')
   # end
 
   def self.all
