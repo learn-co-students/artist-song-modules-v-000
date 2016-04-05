@@ -4,13 +4,13 @@ require_relative './findable.rb'
 require_relative './paramable.rb'
 
 class Artist
-  attr_accessor :name
-  attr_reader :songs
-
   extend Memorable::ClassMethods
   extend Findable::ClassMethods
   include Memorable::InstanceMethods
   include Paramable::InstanceMethods
+  
+  attr_accessor :name
+  attr_reader :songs
 
 
   @@artists = []
