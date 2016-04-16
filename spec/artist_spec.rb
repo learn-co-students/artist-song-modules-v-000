@@ -32,6 +32,7 @@ describe Artist do
     end
 
     it "can count how many artists have been created" do
+      #binding.pry
       expect(Artist.count).to eq(1)
     end
 
