@@ -27,7 +27,7 @@ This is called the **red, green, refactor** pattern. First tests fail, then you 
 
 ### Step 1: Class Methods
 
-First, run the test suite. Wow, we're passing all of our tests! Okay, now let go of those passing tests because we are about to break our code.
+First, run the test suite. Wow, we're passing all of our tests! Okay, not let go of those passing tests because we are about to break our code.
 
 The first area of refactoring we'll be attacking are the class methods. Notice that both the `Song` and `Artist` class have `.count`, `reset_all` and `find_by_name` class methods. Instead of repeating the same exact code in both classes, let's extract these class methods into a module that we can *extend* into the classes.
 
@@ -35,7 +35,7 @@ Ready to break your code? Comment out the `reset_all`, `count` and `find_by_name
 
 #### The `Memorable` Module
 
-Let's define our module. Create a `concerns` folder inside `lib`. This is where we'll store our modules. It is a common practice to create a folder called `concerns` that holds modules that will be used across classes in an object oriented Ruby project.
+Let's define our module. Create a `concerns` folder inside `lib`. This is where we'll store our modules. It is a common practice to create a folder called `concerns` and use that folder holds modules that will be used across classes in an object oriented Ruby project.
 
 Inside the `concerns` folder, create a file called `memorable.rb`. Open up that file and define a module:
 
@@ -45,9 +45,7 @@ module Memorable
 end
 ```
 
-Inside here, define your `reset_all`, `count` and `find_by_name` methods. 
-
-Important! Remember to add `require_relative '../lib/concerns/memorable'` to your environment file before running any tests. We've already provided that line for you in fact! All you have to do is un-comment it out :)
+Inside here, define your `reset_all`, `count` and `find_by_name` methods. Remember to add `require_relative '../lib/concerns/memorable'` to your environment file before running any tests.
 
 Once you define the three class methods mentioned above inside of the `Memorable` module, use the `extend` keyword to extend those methods, as class methods, into both the `Artist` and `Song` class. Refer to the previous code along exercise for help.
 
@@ -60,44 +58,6 @@ Before we build the module to house this method, let's talk a bit about this met
 Let's say your working on an app that serves as online store, connecting users to everything from books to movies to shoes to stereo equipment, you name it. We'll call this app "Nile" (definitely not inspired by another online market-place named after a famous river). Such an application needs to store the items it has for sale as well as the information of the user who logs in to go shopping. Consequently, every time a user logs in, or searches for an item, or purchases an item. We have to *retrieve information from a database*. One of the most common ways you'll be doing that is to use methods like `find_by_name` or `find_by_email` or `find_by_product_id` or...you get the idea. We'll be learning much, much more about this later. Here, we're building a simple `find_by_name` method that introspects on a class's `.all` class method and extracts the instance of the class with a certain name.
 
 Okay, back to you're regularly scheduled programming:
-
-#### The `Findable` Module
-
-In `lib/concerns`, create a file, `findable.rb`. In this file, define a module: `Findable`. This module should define the method, `find_by_name`. This method will be used as a class method. Something like this:
-
-```ruby
-Artist.find_by_name("Adele")
-#=> #<Artistx038230sdcmdn3872>
-```
-
-Extract the code from the `find_by_name` methods that you'll see in the `Artist` and `Song` classes and place it inside the `Findable` module's `find_by_name` method. 
-
-Remember that we need to keep the content of this method abstract. So, inside the `Artist` class, a `find_by_name` method might look like this:
-
-```ruyb
-class Artist
-
-  @@artists = []
-  
-  attr_accessor :name
-  
-  def initialize(name)
-    @name = name
-  end
-  
-  def self.all
-    @@artists
-  end
-  
-  def self.find_by_name(name)
-    @@artists.detect {|a| a.name == name}
-  end
-end
-```
-
-Inside the `Findable.find_by_name` method, we can't use a class-specific class variable like `@@artists`, because our method would break when included in any class that *didn't* define such a variable. 
-
-Is there a way to reference the collection of *all* of the instances of a class, without sepcifically referencing class variables that are only defined in certain classes?
 
 
 ### Step 2: Instance Methods
@@ -118,8 +78,6 @@ end
 ```
 
 Build the `to_param` method inside your module and use the `include` keyword to include the `Paramable` module in both the `Song` and `Artist` class. Once you get your tests passing again, go ahead and delete the commented-out `to_param` method from the `Song` and `Artist` classes.
-
-Important! Remember to add `require_relative '../lib/concerns/paramable'` to your environment file before running any tests. We've already provided that line for you in fact! All you have to do is un-comment it out :)
 
 
 #### Advanced: The `to_param` Method
@@ -336,5 +294,3 @@ class Artist
 Phew! That was some complex stuff. It's okay if you didn't understand everything covered in this lab. There were a few advanced and bonus sections that we threw in there to challenge you and make you think. Don't skip over them, even if you can't follow everything they discuss. It's important to plant the seed of some of these more complex topics––it will make them easier to understand later on when you're ready to go deeper into Ruby programming.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/artist-song-modules' title='Refactoring with Modules'>Refactoring with Modules</a> on Learn.co and start learning to code for free.</p>
-
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/artist-song-modules'>Intro to Modules Lab</a> on Learn.co and start learning to code for free.</p>
