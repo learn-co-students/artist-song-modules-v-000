@@ -12,10 +12,11 @@ module Memorable
     @@songs.clear
   end
 
-    def self.find_by_name(name)
+  def self.find_by_name(name)
     @@artists.detect{|a| a.name}
   end
-def self.reset_all
+  
+  def self.reset_all
     self.all.clear
   end
 
