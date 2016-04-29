@@ -1,4 +1,4 @@
-require 'pry'
+
 require_relative '../lib/memorable.rb'
 require_relative '../lib/paramble.rb'
 
