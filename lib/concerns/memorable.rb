@@ -1,14 +1,14 @@
 module Memorable
 
-	def self.find_by_name(name)
+	def find_by_name(name)
 		@@all.detect{|a| a.name}
 	end
 	
-	def self.reset_all
+	def reset_all
 		self.all.clear
     end
 
-	def self.count
+	def count
 		@@all.count
 	end
 	
