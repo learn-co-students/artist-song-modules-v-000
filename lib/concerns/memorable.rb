@@ -1,15 +1,20 @@
 module Memorable
-
-	def find_by_name(name)
-		@@all.detect{|a| a.name}
-	end
+	module ClassMethods
 	
 	def reset_all
 		self.all.clear
     end
 
 	def count
-		@@all.count
+		self.all.count
 	end
 	
+	end
+	
+	module InstanceMethods
+		def initialize
+			self.class.all << self
+		end
+	
+	end
 end	
