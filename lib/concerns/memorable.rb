@@ -1,15 +1,18 @@
 module Memorable
+  module ClassMethods
+    def reset_all
+      self.all.clear
+    end
 
-  def find_by_name(name)
-    @@songs.detect{|a| a.name}
+    def count
+      self.all.count
+    end
   end
 
-  def reset_all
-    @@songs.clear
-  end
-
-  def count
-    self.all.count
+  module InstanceMethods
+    def initialize
+      self.class.all << self
+    end
   end
 
 end
