@@ -1,4 +1,6 @@
 require_relative 'spec_helper.rb'
+# require_relative './spec_helper'
+
 
 describe Song do
   before(:each) do
