@@ -11,10 +11,6 @@ class Artist
 
   @@artists = []
 
-  #def self.find_by_name(name)
-    #@@artists.detect{|a| a.name}
-  #end
-
   def initialize
     super
     #self.class.all << self
@@ -24,6 +20,10 @@ class Artist
   def self.all
     @@artists
   end
+
+  #def self.find_by_name(name)            Commented out sections were refractored into the files in concerns
+    #@@artists.detect{|a| a.name}
+  #end
 
   #def self.reset_all
     #self.all.clear
