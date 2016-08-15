@@ -3,6 +3,8 @@ require 'pry'
 class Artist
   attr_accessor :name
   attr_reader :songs
+  extend Memorable
+  include Paramable
 
   @@artists = []
 
@@ -11,20 +13,12 @@ class Artist
   end
 
   def initialize
-    @@artists << self
+    self.class.all << self
     @songs = []
   end
 
   def self.all
     @@artists
-  end
-
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    @@artists.count
   end
 
   def add_song(song)
@@ -36,8 +30,8 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
+  # def to_param
+  #   name.downcase.gsub(' ', '-')
+  # end
 
 end
