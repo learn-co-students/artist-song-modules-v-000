@@ -1,4 +1,5 @@
 require 'pry'
+require "./concerns/memorable"
 
 class Artist
   extend Memorable::ClassMethods
