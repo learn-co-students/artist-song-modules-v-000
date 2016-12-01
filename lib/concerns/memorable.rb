@@ -14,6 +14,8 @@ end
 module InstanceMethods
     def initialize
       self.class.all << self
+      super
+     @songs = []
     end
   end
 end
