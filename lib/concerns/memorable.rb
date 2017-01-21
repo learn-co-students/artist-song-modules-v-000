@@ -1,6 +1,4 @@
 require 'pry'
-require_relative '../artist.rb'
-require_relative '../song.rb'
 
 module Memorable 
 
