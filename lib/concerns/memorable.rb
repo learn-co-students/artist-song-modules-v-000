@@ -1,16 +1,22 @@
 require 'pry'
-module Memorable 
 require_relative '../artist.rb'
 require_relative '../song.rb'
-  
-    def reset_all
 
+module Memorable 
+
+  module ClassMethods
+
+
+    def reset_all
+      self.all.clear 
     end# of reset_all
 
 
     def count
-      
+      self.all.length
     end# of count
 
+    
+  end# of ClassMethods
 
 end# of Memorable 
