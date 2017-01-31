@@ -1,20 +1,18 @@
 module Memorable
   module ClassMethods
 
-  def reset_all
-    self.all.clear
+  def reset_all     #Remove self from the Class method
+    self.all.clear  #Use the more general code than specific code
+  end               #self.all.clear > @@songs.clear
+
+  def count         #Remove self from the Class method
+    self.all.count  #Use the more general code than specific code
+  end               #self.all.count > @@artists.count
   end
 
-  def count
-    @@artists.count
-  end
-
-  def reset_all
-    @@songs.clear
-  end
-
-  def count
-    self.all.count
-  end
+  module InstanceMethods
+   def initialize
+     self.class.all << self
+   end
   end
 end
