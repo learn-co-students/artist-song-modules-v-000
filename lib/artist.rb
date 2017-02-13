@@ -1,6 +1,12 @@
+#require_relative '../lib/concerns/memorable.rb'
+
 require 'pry'
+#require_relative '../lib/concerns/memorable.rb'
+
 
 class Artist
+  include Memorable
+
   attr_accessor :name
   attr_reader :songs
 
@@ -19,13 +25,13 @@ class Artist
     @@artists
   end
 
-  def self.reset_all
-    self.all.clear
-  end
+#  def self.reset_all
+#    self.all.clear
+#  end
 
-  def self.count
-    @@artists.count
-  end
+#  def self.count
+#    @@artists.count
+#  end
 
   def add_song(song)
     @songs << song
