@@ -1,25 +1,21 @@
-require_relative './memorable.rb'
-require_relative './paramable.rb'
-require 'pry'
-
 class Song
-  extend Memorable
-  include Paramable
-
+  @@songs = []
   attr_accessor :name
   attr_reader :artist
 
-  @@songs = []
-
-  def initialize
-    @@songs << self
+  extend Findable::ClassMethods
+  extend Memorable::ClassMethods
+  include Paramable::InstanceMethods
+  include Memorable::InstanceMethods
+  
+  def self.all
+    @@songs
   end
 
   def artist=(artist)
     @artist = artist
+    artist.add_song(self) unless artist.songs.include?(self)
   end
 
-  def self.all
-    @@songs
-  end
+ 
 end
