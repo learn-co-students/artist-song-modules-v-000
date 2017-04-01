@@ -2,8 +2,9 @@ require 'pry'
 require_relative '../config/environment'
 
 class Song
-  extend Memorable, Findable
-  include Paramable
+  extend Memorable::ClassMethods, Findable
+  include Paramable, Memorable::InstanceMethods
+
 
 
   attr_accessor :name
@@ -12,9 +13,9 @@ class Song
 
   @@songs = []
 
-  def initialize
-    @@songs << self
-  end
+  # def initialize
+  #   @@songs << self
+  # end
 
   def artist=(artist)
     @artist = artist
