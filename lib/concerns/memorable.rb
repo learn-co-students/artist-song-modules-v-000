@@ -1,9 +1,19 @@
 module Memorable
-    def self.reset_all
+  module InstanceMethods
+    def initialize
+      self.class.all << self
+    end
+
+  end
+
+  module ClassMethods
+
+    def reset_all
       self.all.clear
     end
 
-    def self.count
-      @@artists.count
+    def count
+      self.all.count
     end
+  end
 end
