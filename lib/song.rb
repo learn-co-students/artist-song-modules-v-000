@@ -1,25 +1,29 @@
 require 'pry'
+require_relative '../lib/concerns/Findable.rb'
+require_relative '../lib/concerns/Memorable.rb'
 
 class Song
+  extend Memorable
+  extend Findable
   attr_accessor :name
   attr_reader :artist
 
-  @@songs = []
+  @@all = []
 
   def initialize
-    @@songs << self
+    @@all << self
   end
 
   def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
+    @@all.detect{|a| a.name == name}
+ end
 
   def artist=(artist)
     @artist = artist
   end
 
   def self.reset_all
-    @@songs.clear
+    @@all.clear
   end
 
   def to_param
@@ -31,6 +35,6 @@ class Song
   end
 
   def self.all
-    @@songs
+    @@all
   end
 end
