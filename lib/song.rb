@@ -4,6 +4,8 @@ class Song
   attr_accessor :name
   attr_reader :artist
 
+  extend Memorable
+
   @@songs = []
 
   def initialize
@@ -18,9 +20,9 @@ class Song
     @artist = artist
   end
 
-#  def self.reset_all
-#    @@songs.clear
-#  end
+  def self.reset_all
+    @@songs.clear
+  end
 
   def to_param
     name.downcase.gsub(' ', '-')
