@@ -1,31 +1,35 @@
 require 'pry'
 
+require_relative './concerns/memorable.rb'
+
 class Artist
   attr_accessor :name
   attr_reader :songs
 
-  @@artists = []
+  extend Memorable
+
+  @@list = []
 
   def self.find_by_name(name)
-    @@artists.detect{|a| a.name == name}
+    @@list.detect{|a| a.name == name}
   end
 
   def initialize
-    @@artists << self
+    @@list << self
     @songs = []
   end
 
   def self.all
-    @@artists
+    @@list
   end
 
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    @@artists.count
-  end
+  # def self.reset_all
+  #   self.all.clear
+  # end
+  #
+  # def self.count
+  #   @@list.count
+  # end
 
   def add_song(song)
     @songs << song
