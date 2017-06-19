@@ -6,13 +6,10 @@ class Artist
   attr_accessor :name
   attr_reader :songs
 
-  extend Memorable
+  extend Memorable, Findable
+  include Paramable
 
   @@list = []
-
-  def self.find_by_name(name)
-    @@list.detect{|a| a.name == name}
-  end
 
   def initialize
     @@list << self
