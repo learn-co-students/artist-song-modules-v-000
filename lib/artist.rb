@@ -1,19 +1,28 @@
 require 'pry'
 
-class Artist
-  attr_accessor :name
-  attr_reader :songs
+ class Artist
+
+  #include FancyDance::InstanceMethods
+  extend Memorable::ClassMethods
+  extend Findable
+  include Paramable
+  include Memorable::InstanceMethods
+
+   attr_accessor :name
+   attr_reader :songs
 
   @@artists = []
 
   def self.find_by_name(name)
     @@artists.detect{|a| a.name == name}
   end
+  @@all = []
 
-  def initialize
+   def initialize
     @@artists << self
-    @songs = []
-  end
+    super
+     @songs = []
+   end
 
   def self.all
     @@artists
@@ -25,19 +34,20 @@ class Artist
 
   def self.count
     @@artists.count
-  end
+    @@all
+   end
 
-  def add_song(song)
-    @songs << song
-    song.artist = self
-  end
+   def add_song(song)
+     @songs << song
+     song.artist = self
+   end
 
-  def add_songs(songs)
-    songs.each { |song| add_song(song) }
-  end
+   def add_songs(songs)
+     songs.each { |song| add_song(song) }
+   end
 
   def to_param
     name.downcase.gsub(' ', '-')
   end
 
-end
+ end
