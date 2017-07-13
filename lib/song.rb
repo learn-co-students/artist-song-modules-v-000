@@ -4,14 +4,10 @@ class Song
   attr_accessor :name
   attr_reader :artist
 
-  extend Memorable, Findable
-  include Paramable
+  extend Memorable::ClassMethods, Findable
+  include Memorable::InstanceMethods, Paramable
 
   @@all = []
-
-  def initialize
-    @@all << self
-  end
 
   def artist=(artist)
     @artist = artist
