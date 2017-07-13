@@ -1,0 +1,30 @@
+# all #'s in modules need to be generic so their applicable to a variety of code
+# child classes inheriting modules #'s 
+module Memorable
+	# needed to nest sets of modules w/in one another
+	# then the 'include' & 'extend' the neccessary names in other classes
+	# i.e. in artist.rb 'extend Memorable' => 'extend Memorable::ClassMethods
+	# include Memorable::InstanceMethods
+	module ClassMethods
+		# since method will be called on different classes, 'self' is only applied in #, --NOT in method call (self.reset_all) -- then code is applicable to class being used on
+	  def reset_all
+	    self.all.clear
+	  end
+	  
+	  def count
+	    self.all.count
+	  end
+  end
+  
+  module InstanceMethods
+  
+    def initialize
+  	# #all is a #class 
+  	# #initialize is an #instance 
+  	# to call a #class inside #instance use 'self.class' which refers 2 the 'Class' itself
+  	# 'self.class.all' (functionality)= 'self.all'
+    self.class.all << self
+   # @@artists << self  
+  	end
+  end
+end

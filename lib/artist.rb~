@@ -10,6 +10,9 @@ class Artist
   @@artists = []
 
 	def initialize
+		# 'super' tells # to look up behavior in # with the same name as in the parent
+		# parent/super class = #initialize in InstanceMethods module
+		# excute code in #parent & then in #child
 		super
     @songs = []
   end
