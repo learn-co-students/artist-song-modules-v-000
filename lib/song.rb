@@ -3,6 +3,7 @@ require 'pry'
 class Song
 
   extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   extend Findable::ClassMethods
   include Paramable::InstanceMethods
 
@@ -11,9 +12,9 @@ class Song
 
   @@songs = []
 
-  def initialize
-    @@songs << self
-  end
+  # # def initialize
+  #   @@songs << self
+  # end
 
   def self.find_by_name(name)
     @@songs.detect{|a| a.name == name}
