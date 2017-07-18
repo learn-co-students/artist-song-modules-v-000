@@ -32,7 +32,7 @@ describe Artist do
     end
 
     it "can count how many artists have been created" do
-      expect(Artist.count).to eq(1)
+      expect(Artist.count).to eq(2)
     end
 
     it "can find an artist by name" do
