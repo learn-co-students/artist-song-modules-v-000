@@ -2,6 +2,7 @@ require 'pry'
 require_relative '../config/environment.rb'
 class Artist
   extend Memorable::ClassMethods
+  extend Findable::ClassMethods
   #include Memorable::InstanceMethods
   attr_accessor :name
   attr_reader :songs
@@ -15,10 +16,6 @@ class Artist
 
   def self.all
     @@artists
-  end
-
-  def self.find_by_name(name)
-    self.all.detect{|a| a.name == name}
   end
 
   def add_song(song)
