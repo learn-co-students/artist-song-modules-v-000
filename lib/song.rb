@@ -1,6 +1,8 @@
 require 'pry'
-
+require_relative '../config/environment.rb'
 class Song
+  extend Memorable::ClassMethods
+  #include Memorable::InstanceMethods
   attr_accessor :name
   attr_reader :artist
 
@@ -14,20 +16,12 @@ class Song
     @@songs
   end
 
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
   def artist=(artist)
     @artist = artist
   end
 
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    self.all.count
+  def self.find_by_name(name)
+    @@songs.detect{|a| a.name == name}
   end
 
   def to_param
