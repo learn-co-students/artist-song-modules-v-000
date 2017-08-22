@@ -1,12 +1,13 @@
 require 'pry'
+require_relative './concerns/memorable.rb'
+require_relative './concerns/findable.rb'
+require_relative './concerns/paramable.rb'
 
 class Artist
-
   extend Memorable::ClassMethods
+  extend Findable
   include Memorable::InstanceMethods
-  extend Findable::ClassMethods
-  include Paramable::InstanceMethods
-
+  include Paramable
   attr_accessor :name
   attr_reader :songs
 
@@ -20,7 +21,6 @@ class Artist
   def self.all
     @@artists
   end
-
 
   def add_song(song)
     @songs << song
