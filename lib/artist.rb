@@ -1,8 +1,13 @@
 require 'pry'
+require_relative './concerns/memorable'
 
 class Artist
   attr_accessor :name
   attr_reader :songs
+
+  extend Memorable::ClassMethods
+include Memorable::InstanceMethods
+  include Paramable
 
   @@artists = []
 
@@ -11,7 +16,7 @@ class Artist
   end
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
@@ -19,13 +24,7 @@ class Artist
     @@artists
   end
 
-  def self.reset_all
-    self.all.clear
-  end
 
-  def self.count
-    @@artists.count
-  end
 
   def add_song(song)
     @songs << song
