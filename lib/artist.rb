@@ -7,11 +7,9 @@ class Artist
   extend Memorable::ClassMethods
   extend Findable
 
-  @@artists = []
+  include Paramable
 
-  # def self.find_by_name(name)
-  #   @@artists.detect{|a| a.name == name}
-  # end
+  @@artists = []
 
   def initialize
     @@artists << self
@@ -31,8 +29,5 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
 
 end
