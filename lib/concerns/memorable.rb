@@ -8,11 +8,11 @@ module Memorable
     def count
       self.all.count
     end
+end
+      module InstanceMethods
 
-    module InstanceMethods
-
-    def initialize
-      self.class.all << self
+      def initialize
+        self.class.all << self
+      end
     end
   end
-end
