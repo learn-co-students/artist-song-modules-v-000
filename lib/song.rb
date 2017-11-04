@@ -2,7 +2,7 @@ require 'pry'
 require_relative '../config/environment'
 
 class Song
-  extend Memorable
+  extend Memorable::ClassMethods
   extend Findable
   attr_accessor :name
   attr_reader :artist

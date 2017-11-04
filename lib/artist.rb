@@ -2,7 +2,8 @@ require 'pry'
 require_relative '../config/environment'
 
 class Artist
-  extend Memorable
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   extend Findable
   attr_accessor :name
   attr_reader :songs
@@ -14,7 +15,7 @@ class Artist
   #end
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
