@@ -1,20 +1,18 @@
 require 'pry'
-require_relative '../config/environment.rb'
 
 class Artist
   extend Memorable::ClassMethods
-  
+  extend Findable::ClassMethods
+  include Memorable::InstanceMethods
+
   attr_accessor :name
   attr_reader :songs
 
   @@artists = []
 
-  def self.find_by_name(name)
-    @@artists.detect{|a| a.name == name}
-  end
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
