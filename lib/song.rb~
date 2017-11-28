@@ -1,6 +1,6 @@
 class Song
-	extend Memorable::ClassMethods #=> class module 
-	include Memorable::InstanceMethods #=> instance module 
+	extend Memorable :: ClassMethods #=> class module 
+	include Memorable :: InstanceMethods #=> instance module 
  	extend Findable #=> class module
  	include Paramable #=> instance module
 	
