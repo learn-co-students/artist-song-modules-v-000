@@ -1,36 +1,25 @@
 require 'pry'
 
 class Song
-  attr_accessor :name
-  attr_reader :artist
+  extend Memorable::ClassMethods
+  extend Findable::ClassMethods
+  include Memorable::InstanceMethods
+  include Paramable::InstanceMethods
 
-  @@songs = []
+  attr_accessor :name#reader, writer for name of song
+  attr_reader :artist#reader for Song's artist
 
-  def initialize
-    @@songs << self
+  @@songs = []#class array to hold all songs created
+
+  def self.all#class method
+    @@songs#access all songs
   end
 
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
+  def initialize#instance initalize
+    self.class.all << self#put this song (self) into class array songs
   end
 
-  def artist=(artist)
-    @artist = artist
-  end
-
-  def self.reset_all
-    @@songs.clear
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  def self.count
-    self.all.count
-  end
-
-  def self.all
-    @@songs
+  def artist=(artist)#instance setter method (why no attr_accessor?)
+    @artist = artist#set song's artist (why not self.all?)
   end
 end
