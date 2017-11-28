@@ -1,36 +1,24 @@
 require 'pry'
 
 class Song
-  attr_accessor :name
-  attr_reader :artist
+  extend Memorable
+  extend Findable
+  include Paramable
 
-  @@songs = []
+  attr_accessor :name #a song can set and get its name
+  attr_reader :artist #a song can read its artist, but not write it
+
+  @@songs = [] #the Song class keeps track of all of its songs
 
   def initialize
-    @@songs << self
-  end
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
+    @@songs << self #EVERY new song gets kept track of
   end
 
   def artist=(artist)
-    @artist = artist
-  end
-
-  def self.reset_all
-    @@songs.clear
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  def self.count
-    self.all.count
+    @artist = artist #the song instance can in fact set an artist? This is redundant
   end
 
   def self.all
-    @@songs
+    @@songs #returns array of all songs
   end
 end

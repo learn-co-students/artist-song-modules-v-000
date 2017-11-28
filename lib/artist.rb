@@ -1,30 +1,22 @@
 require 'pry'
 
 class Artist
-  attr_accessor :name
-  attr_reader :songs
+  extend Memorable
+  extend Findable
+  include Paramable
+
+  attr_accessor :name #an Artist can set and get its own name
+  attr_reader :songs #an Artist can get but not set its own songs?
 
   @@artists = []
 
-  def self.find_by_name(name)
-    @@artists.detect{|a| a.name == name}
-  end
-
   def initialize
-    @@artists << self
-    @songs = []
+    @@artists << self #all new Artists get kept track of
+    @songs = [] #all new Artists get a new empty song array
   end
 
   def self.all
     @@artists
-  end
-
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    @@artists.count
   end
 
   def add_song(song)
@@ -34,10 +26,6 @@ class Artist
 
   def add_songs(songs)
     songs.each { |song| add_song(song) }
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
   end
 
 end
