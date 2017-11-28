@@ -47,7 +47,7 @@ describe Artist do
   end
 
   describe "with songs" do
-    let(:song){Song.new}
+  let(:song){Song.new}
 
     it "can have a song added" do
       artist.add_song(song)
