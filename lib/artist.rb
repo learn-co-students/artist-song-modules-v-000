@@ -4,6 +4,8 @@ class Artist
   
   extend Memorable
   
+  extend Findable 
+  
   attr_accessor :name # name is a method - we can manipulate/have access to change value 
   attr_reader :songs # this is only a reader - cannot change value 
 
