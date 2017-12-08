@@ -1,18 +1,18 @@
 require 'pry'
 
 class Artist
-  attr_accessor :name
-  attr_reader :songs
+  attr_accessor :name # name is a method - we can manipulate/have access to change value 
+  attr_reader :songs # this is only a reader - cannot change value 
 
-  @@artists = []
+  @@artists = [] # class variable to hold the artists instances
 
-  def self.find_by_name(name)
+  def self.find_by_name(name) # class method - goes through the artists array and returns the name of the artist
     @@artists.detect{|a| a.name == name}
   end
 
-  def initialize
-    @@artists << self
-    @songs = []
+  def initialize # initializes a new artist without any arguments 
+    @@artists << self # upon initialization - the artist instances are added to the artists array
+    @songs = [] # upon initialization an instance variable of @songs is set to an empty array 
   end
 
   def self.all
