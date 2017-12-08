@@ -1,6 +1,8 @@
 require 'pry'
 
 class Song
+  
+  extend Memorable
   attr_accessor :name # access to call name method - manipulate value
   attr_reader :artist # reader only - cannot manipulate value for artist
 
