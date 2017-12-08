@@ -15,28 +15,31 @@ class Artist
     @songs = [] # upon initialization an instance variable of @songs is set to an empty array 
   end
 
-  def self.all
+  def self.all # class method - displays contents of artists array
     @@artists
   end
 
-  def self.reset_all
+  def self.reset_all # class method - sets the artists array to an empty array - clears array
     self.all.clear
   end
 
-  def self.count
+  def self.count # class method - counts the indexes of the artists array (.length)
     @@artists.count
   end
 
-  def add_song(song)
+  def add_song(song) # instance method - adds the value that is passed through the song argument to the @songs array
+    # sets the song instance equal to artist instance
     @songs << song
     song.artist = self
   end
 
-  def add_songs(songs)
+  def add_songs(songs) # instance method - iterates over array passed through songs argument
+    # calls the add_song(song) method - returns song instance
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
+  def to_param # instance method - calls downcase and gsub methods on name attr
+    # replaces spaces with hyphen "-"
     name.downcase.gsub(' ', '-')
   end
 
