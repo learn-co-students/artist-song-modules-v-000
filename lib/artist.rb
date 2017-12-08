@@ -2,7 +2,8 @@ require 'pry'
 
 class Artist
   
-  extend Memorable
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   
   extend Findable 
   
@@ -13,12 +14,8 @@ class Artist
 
   @@artists = [] # class variable to hold the artists instances
 
-#  def self.find_by_name(name) # class method - goes through the artists array and returns the name of the artist
-#    @@artists.detect{|a| a.name == name}
-#  end
-
   def initialize # initializes a new artist without any arguments 
-    self.class.all << self # upon initialization - the artist instances are added to the artists array
+    super # upon initialization - the artist instances are added to the artists array
     @songs = [] # upon initialization an instance variable of @songs is set to an empty array 
   end
 
@@ -36,10 +33,5 @@ class Artist
     # calls the add_song(song) method - returns song instance
     songs.each { |song| add_song(song) }
   end
-
-#  def to_param # instance method - calls downcase and gsub methods on name attr
-#    # replaces spaces with hyphen "-"
-#    name.downcase.gsub(' ', '-')
-#  end
 
 end
