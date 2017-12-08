@@ -14,7 +14,7 @@ class Song
   @@songs = [] # class variable set to empty array
 
   def initialize # initializes a new instance of Song class - w/o argument
-    @@songs << self # upon initialization Song instances are stored in songs array
+    self.class.all << self # upon initialization Song instances are stored in songs array
   end
 
 #  def self.find_by_name(name) # class method - iterates over the songs array - returns song name attr

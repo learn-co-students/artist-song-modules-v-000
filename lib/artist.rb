@@ -18,7 +18,7 @@ class Artist
 #  end
 
   def initialize # initializes a new artist without any arguments 
-    @@artists << self # upon initialization - the artist instances are added to the artists array
+    self.class.all << self # upon initialization - the artist instances are added to the artists array
     @songs = [] # upon initialization an instance variable of @songs is set to an empty array 
   end
 
