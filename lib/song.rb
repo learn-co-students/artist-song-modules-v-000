@@ -6,6 +6,8 @@ class Song
   
   extend Findable 
   
+  include Paramable
+  
   attr_accessor :name # access to call name method - manipulate value
   attr_reader :artist # reader only - cannot manipulate value for artist
 
@@ -25,11 +27,11 @@ class Song
 
 
 
-  def to_param # instance method - calls downcase and gsub method on name method 
-    # replaces spaces with hyphen 
-    name.downcase.gsub(' ', '-')
-  end
-
+#  def to_param # instance method - calls downcase and gsub method on name method 
+#    # replaces spaces with hyphen 
+#    name.downcase.gsub(' ', '-')
+#  end
+#
 
 
   def self.all # class method - displays contents of songs array

@@ -6,6 +6,8 @@ class Artist
   
   extend Findable 
   
+  include Paramable
+  
   attr_accessor :name # name is a method - we can manipulate/have access to change value 
   attr_reader :songs # this is only a reader - cannot change value 
 
@@ -35,9 +37,9 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param # instance method - calls downcase and gsub methods on name attr
-    # replaces spaces with hyphen "-"
-    name.downcase.gsub(' ', '-')
-  end
+#  def to_param # instance method - calls downcase and gsub methods on name attr
+#    # replaces spaces with hyphen "-"
+#    name.downcase.gsub(' ', '-')
+#  end
 
 end
