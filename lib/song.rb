@@ -18,18 +18,18 @@ class Song
     @artist = artist
   end
 
-  def self.reset_all # class method - sets the songs array to empty
-    @@songs.clear
-  end
+#  def self.reset_all # class method - sets the songs array to empty
+#    @@songs.clear
+#  end
 
   def to_param # instance method - calls downcase and gsub method on name method 
     # replaces spaces with hyphen 
     name.downcase.gsub(' ', '-')
   end
 
-  def self.count # class method - calls all and count method on Song class
-    self.all.count
-  end
+#  def self.count # class method - calls all and count method on Song class
+#    self.all.count
+#  end
 
   def self.all # class method - displays contents of songs array
     @@songs

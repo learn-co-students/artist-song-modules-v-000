@@ -19,13 +19,13 @@ class Artist
     @@artists
   end
 
-  def self.reset_all # class method - sets the artists array to an empty array - clears array
-    self.all.clear
-  end
-
-  def self.count # class method - counts the indexes of the artists array (.length)
-    @@artists.count
-  end
+#  def self.reset_all # class method - sets the artists array to an empty array - clears array
+#    self.all.clear
+#  end
+#
+#  def self.count # class method - counts the indexes of the artists array (.length)
+#    @@artists.count
+#  end
 
   def add_song(song) # instance method - adds the value that is passed through the song argument to the @songs array
     # sets the song instance equal to artist instance
