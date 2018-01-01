@@ -1,30 +1,23 @@
 class Artist
-#=================modules==================
   extend Memorable::ClassMethods
   extend Findable::ClassMethods
   include Memorable::InstanceMethods
   include Paramable::InstanceMethods
-#=================properties================
-  attr_accessor :name
-  attr_reader :songs
+  attr_accessor :name, :songs
   @@artists = []
-#=================intialize=================
+  def self.all; @@artists; end
+
   def initialize
     super
-    @songs = []
+    self.songs = []  
   end
-#==================class====================
-  def self.all
-    @@artists
-  end
-#=================instance==================
+
   def add_song(song)
-    @songs << song
+    self.songs << song
     song.artist = self unless song.artist
   end
 
-  def add_songs(songs)
-    songs.each { |song| add_song(song) }
+  def add_songs(songs);
+    songs.each{|song| add_song(song)}
   end
-#==========================================
 end

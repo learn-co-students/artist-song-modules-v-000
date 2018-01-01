@@ -1,20 +1,9 @@
 class Song
-#=================modules==================
   extend Memorable::ClassMethods
   extend Findable::ClassMethods
   include Memorable::InstanceMethods
   include Paramable::InstanceMethods
-#=================properties================
-  attr_accessor :name
-  attr_reader :artist
+  attr_accessor :name, :artist
   @@songs = []
-#==================class====================
-  def self.all
-    @@songs
-  end
-#=================instance==================
-  def artist=(artist)
-    @artist = artist
-  end  
-#==========================================
+  def self.all; @@songs; end 
 end
