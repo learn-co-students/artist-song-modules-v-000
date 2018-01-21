@@ -8,6 +8,10 @@
   def self.count
     @@artists.count
   end
+  
+  def to_param
+    name.downcase.gsub(' ', '-')
+  end
  
  From song.rb:
   def self.reset_all
@@ -16,6 +20,10 @@
   
   def self.count
     self.all.count
+  end
+  
+  def to_param
+    name.downcase.gsub(' ', '-')
   end
   
   =end
