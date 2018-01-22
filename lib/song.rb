@@ -12,19 +12,13 @@ class Song
 
   @@songs = []
 
-  
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
   def artist=(artist)
     @artist = artist
+    artist.add_song(self) unless artist.songs.include?(self)
   end
-
-  
 
   def self.all
     @@songs
   end
+  
 end

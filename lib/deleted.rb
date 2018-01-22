@@ -12,6 +12,10 @@
   def to_param
     name.downcase.gsub(' ', '-')
   end
+  
+   def self.find_by_name(name)
+    @@artists.detect{|a| a.name == name}
+  end
  
  From song.rb:
   def self.reset_all
@@ -24,6 +28,10 @@
   
   def to_param
     name.downcase.gsub(' ', '-')
+  end
+  
+   def self.find_by_name(name)
+    @@songs.detect{|a| a.name == name}
   end
   
   =end
