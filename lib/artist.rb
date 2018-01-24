@@ -5,20 +5,17 @@ class Artist
   attr_reader :songs
 
   extend Memorable::ClassMethods
+  extend Findable::ClassMethods
+  include Memorable::InstanceMethods
+  include Paramable::InstanceMethods
 
 
   @@artists = []
 
-#looks through the @@artist class variable for the name passed through
-#find the first element that matches name
-  def self.find_by_name(name)
-    @@artists.detect{|a| a.name == name}
-  end
-
 #initializes and dumps the new artist in the artist class variable
 #initializes with an an empty array of songs
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
@@ -27,20 +24,15 @@ class Artist
     @@artists
   end
 
-
 #adds the song passed through to the song array
 #tells the artist it belongs to the song
   def add_song(song)
     @songs << song
-    song.artist = self
+    song.artist = self unless song.artist
   end
 
   def add_songs(songs)
     songs.each { |song| add_song(song) }
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
   end
 
 end
