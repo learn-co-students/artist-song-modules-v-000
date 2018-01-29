@@ -1,22 +1,19 @@
 require 'pry'
 module Memorable
-  @@artists = []
-  @@songs = []
+  module ClassMethods
 
-  def reset_all
-    @@artists.clear
-  end
+    def reset_all
+      self.all.clear
+    end
 
-  def count
-    @@artists.count
-  end
-=begin
-  def reset_all
-    @@songs.clear
+    def count
+      self.all.count
+    end
   end
 
-  def count
-    @@songs.count
+  module InstanceMethods
+    def initialize
+      self.class.all << self
+    end
   end
-=end
 end
