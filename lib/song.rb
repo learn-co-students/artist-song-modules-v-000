@@ -30,6 +30,7 @@ class Song
     self.all.count
   end
 
+
   def self.all
     @@songs
   end
