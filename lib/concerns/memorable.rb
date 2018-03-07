@@ -1,13 +1,4 @@
 module Memorable
-  module InstanceMethods
-    def reset_all
-     songs.clear
-    end
-
-    def count
-      artists.count
-    end
-  end
   module ClassMethods
 
     def count
@@ -17,5 +8,10 @@ module Memorable
     def reset_all
           self.all.clear
         end
+      end
+  module InstanceMethods
+   def initialize
+     self.class.all << self
+   end
 end
 end
