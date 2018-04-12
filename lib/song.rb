@@ -18,4 +18,6 @@ class Song
     @@songs
   end
   extend Memorable
+  extend Findable
+  include Paramable
 end
