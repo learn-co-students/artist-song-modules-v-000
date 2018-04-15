@@ -300,7 +300,7 @@ module Memorable
 end
 ```
 
-There's just one more step. Look back at the original `initialize` method of the `Artist` class:
+There's just one more step. Look back at the original `#initialize` method of the `Artist` class:
 
 ```ruby
 class Artist
