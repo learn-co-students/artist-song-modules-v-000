@@ -124,17 +124,17 @@ Important! Remember to add `require_relative '../lib/concerns/paramable'` to you
 
 #### Advanced: The `to_param` Method
 
-To understand the concept of a parameter, let's take a look at an example URL: www.facebook.com/your-name.
+To understand the concept of a parameter, let's take a look at an example URL: www.facebook.com/a-facebook-url-that-no-one-is-likely-to-pick.
 
-The "your-name" part of the above URL might be referred to as a slug. Another term for this section of a URL is "parameter" or "param". One common task you'll undertake as a web developer is to take a Ruby object, such as an instance of a `User` class, and make a URL out of it. For example, let's say we have a database full of instances of a `User` class. When an individual user signs in to our app, we might want to show them their very own profile page. To do so, we would have to write a method that takes their name and turns it into a slug or parameter that could be tacked onto a URL.
+That long part of the above facebook URL with all the dashes might be referred to as a slug. Another term for this section of a URL is "parameter" or "param". One common task you'll undertake as a web developer is to take a Ruby object, such as an instance of a `User` class, and make a URL out of it. For example, let's say we have a database full of instances of a `User` class. When an individual user signs in to our app, we might want to show them their very own profile page. To do so, we would have to write a method that takes their name and turns it into a slug or parameter that could be tacked onto a URL.
 
 Don't worry too much about this use-case for now. We'll be learning much, much more about connecting our Ruby programs to the web later on. For now, just understand the general purpose of having a method like the `to_param` method.
 
-### Bonus: Refactoring the `.initialize` Method
+### Bonus: Refactoring the `#initialize` Method
 
 #### Recognizing Repetition
 
-Let's take a look at the `.initialize` methods of both the `Song` and `Artist` class:
+Let's take a look at the `#initialize` methods of both the `Song` and `Artist` class:
 
 #### `lib/song.rb`
 
@@ -186,7 +186,7 @@ def self.all
 end
 ```
 
-Let's begin by refactoring the content of both `.initialize` methods to use the `<ClassName>.all` class method instead of literal class variables. How can we programmatically access the class of the instance that we are operating on inside the `.initialize` method? Take a look below:
+Let's begin by refactoring the content of both `#initialize` methods to use the `<ClassName>.all` class method instead of literal class variables. How can we programmatically access the class of the instance that we are operating on inside the `#initialize` method? Take a look below:
 
 #### `lib/song.rb`
 
@@ -205,7 +205,7 @@ def initialize
 end
 ```
 
-Remember that `.initialize` is an instance method. So, inside `.initialize`, `self` refers to the instance of the class on which you are operating. But `.all` is a class method. We would normally call it like this:
+Remember that `#initialize` is an instance method. So, inside `#initialize`, `self` refers to the instance of the class on which you are operating. But `.all` is a class method. We would normally call it like this:
 
 `Artist.all`
 
@@ -213,7 +213,7 @@ or
 
 `Song.all`
 
-So, to call the `.all` class method from *inside the `.initialize` instance method*, we can call `self.class` inside `.initialize`.
+So, to call the `.all` class method from *inside the `#initialize` instance method*, we can call `self.class` inside `#initialize`.
 
 Take a quick look at this reminder of how `.class` works:
 
@@ -223,15 +223,15 @@ new_song.class
  => Song
 ```
 
-So, we can call `self.class.all` inside `.initialize` and it will be just as if we called `Song.all` or `Artist.all`. Only this way, our code is abstract. It doesn't explicitly reference `Song` or `Artist` class, so it is more flexible.
+So, we can call `self.class.all` inside `#initialize` and it will be just as if we called `Song.all` or `Artist.all`. Only this way, our code is abstract. It doesn't explicitly reference `Song` or `Artist` class, so it is more flexible.
 
-Now we have two `.initialize` methods that contain identical lines of code. We're ready for the next refactoring step––modules.
+Now we have two `#initialize` methods that contain identical lines of code. We're ready for the next refactoring step––modules.
 
 #### Extracting Repetition
 
-Before we build a brand new module to house this code from our `.initialize` methods, let's stop and think. What is the responsibility or the behavior of the code we are trying to extract? This is code that is responsible for telling a class to keep track of its own instances. This code really goes hand in hand with the `.count` and `.reset_all` class methods that we already extracted into the `Memorable` module. It makes sense, therefore, to extract this code into that same module.
+Before we build a brand new module to house this code from our `#initialize` methods, let's stop and think. What is the responsibility or the behavior of the code we are trying to extract? This is code that is responsible for telling a class to keep track of its own instances. This code really goes hand in hand with the `.count` and `.reset_all` class methods that we already extracted into the `Memorable` module. It makes sense, therefore, to extract this code into that same module.
 
-But wait (you might be thinking), isn't that module **extended** into our `Song` and `Artist` class in order to offer its methods as **class** methods? Isn't `.initialize` an instance method? How can we put class methods and instance methods in the same module? Read on to learn the answer...
+But wait (you might be thinking), isn't that module **extended** into our `Song` and `Artist` class in order to offer its methods as **class** methods? Isn't `#initialize` an instance method? How can we put class methods and instance methods in the same module? Read on to learn the answer...
 
 #### Nesting Modules
 
@@ -268,9 +268,9 @@ include Memorable::InstanceMethods
 
 The `Parent::Child` syntax is called **namespacing**.
 
-Okay, we're almost done. We need to fill out the content of the `.initialize` method in the module.
+Okay, we're almost done. We need to fill out the content of the `#initialize` method in the module.
 
-The `.initialize` methods in our `Song` and `Artist` classes share the following line:
+The `#initialize` methods in our `Song` and `Artist` classes share the following line:
 
 ```
 def initialize
@@ -278,7 +278,7 @@ def initialize
 end
 ```
 
-This is the code that will go into the new `.initialize` method of our module:
+This is the code that will go into the new `#initialize` method of our module:
 
 ```ruby
 module Memorable
@@ -300,7 +300,7 @@ module Memorable
 end
 ```
 
-There's just one more step. Look back at the original `.initialize` method of the `Artist` class:
+There's just one more step. Look back at the original `#initialize` method of the `Artist` class:
 
 ```ruby
 class Artist
@@ -312,13 +312,13 @@ class Artist
   end
 ```
 
-In the `Artist` class, the initialize method is *also* responsible for setting the `@songs` instance variable equal to an empty array. We need to hang on to this behavior, even as `Artist` instances grab the *rest* of the `.initialize` from the `Memorable::InstanceMethods` module.
+In the `Artist` class, the initialize method is *also* responsible for setting the `@songs` instance variable equal to an empty array. We need to hang on to this behavior, even as `Artist` instances grab the *rest* of the `#initialize` from the `Memorable::InstanceMethods` module.
 
 Remember our `super` keyword from the inheritance code along exercise? The `super` keyword, placed inside a method, will tell that method to look up its behavior in the method of the same name that lives in the parent, or super, class. A method that includes the `super` keyword will execute any code placed inside the super class' method of the same name, and then execute any code inside the child class' method.
 
 When we `include` a module in a class, we are really telling that class to *inherit* methods from that module.
 
-So, we can use the `super` keyword to tell our `Artist`'s `.initialize` method to use the code in the `Memorable::InstanceMethods` module's `.initialize` method *and* also to use any additional code in the `Artist`'s `.initialize` method. Take a look:
+So, we can use the `super` keyword to tell our `Artist`'s `#initialize` method to use the code in the `Memorable::InstanceMethods` module's `#initialize` method *and* also to use any additional code in the `Artist`'s `#initialize` method. Take a look:
 
 ```ruby
 class Artist
