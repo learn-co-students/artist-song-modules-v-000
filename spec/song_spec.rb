@@ -1,5 +1,5 @@
 require_relative 'spec_helper.rb'
-
+#git test part 3
 describe Song do
   before(:each) do
     Song.reset_all
