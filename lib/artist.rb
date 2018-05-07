@@ -7,9 +7,9 @@ class Artist
   @@artists = []
 
   def initialize
-    @@artists << self
+    super
     @songs = []
-  end
+end
 
   def self.all
     @@artists
@@ -24,13 +24,10 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  # def to_param
-  #   name.downcase.gsub(' ', '-')
-  # end
-
   extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   extend Findable::ClassMethods
-  extend Paramable::ClassMethods
+  include Paramable::InstanceMethods
 
 
 
