@@ -1,9 +1,11 @@
 require 'pry'
 require_relative './concerns/memorable'
 require_relative './concerns/findable'
+require_relative './concerns/paramable'
 
 class Artist
   extend Memorable, Findable
+  include Paramable
 
   attr_accessor :name
   attr_reader :songs
@@ -19,9 +21,9 @@ class Artist
     @@all
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
+  #def to_param
+  #  name.downcase.gsub(' ', '-')
+  #end
 
   def add_song(song)
     @songs << song
