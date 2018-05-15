@@ -1,8 +1,9 @@
 require 'pry'
 require_relative './concerns/memorable'
+require_relative './concerns/findable'
 
 class Artist
-  extend Memorable
+  extend Memorable, Findable
 
   attr_accessor :name
   attr_reader :songs
@@ -21,19 +22,6 @@ class Artist
   def to_param
     name.downcase.gsub(' ', '-')
   end
-
-  #def self.count
-  #  @@artists.count
-  #end
-
-  #def self.reset_all
-  #  self.all.clear
-  #end
-
-  def self.find_by_name(name)
-    @@all.detect{|a| a.name == name}
-  end
-
 
   def add_song(song)
     @songs << song
