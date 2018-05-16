@@ -1,36 +1,36 @@
 require 'pry'
+require_relative './concerns/memorable.rb'
+require_relative './concerns/paramable.rb'
+require_relative './concerns/findable.rb'
 
 class Song
+
+  extend Memorable::ClassMethods
+  extend Findable::ClassMethods
+  include Paramable::InstanceMethod
+  include Memorable::InstanceMethod
+
   attr_accessor :name
   attr_reader :artist
 
   @@songs = []
 
-  def initialize
-    @@songs << self
+  #can initialize a song
+  #def initialize
+    ##@@songs << self
+    ##like calling Song.all
+    #self.class.all << self
+  #end
+
+  #keeps track of the songs that have been created
+  def self.all
+    @@songs
   end
 
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
+  #has an artist
   def artist=(artist)
     @artist = artist
   end
 
-  def self.reset_all
-    @@songs.clear
-  end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  def self.count
-    self.all.count
-  end
-
-  def self.all
-    @@songs
-  end
 end
