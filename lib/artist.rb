@@ -1,6 +1,11 @@
 require 'pry'
 
 class Artist
+  extend Memorable::ClassMethods
+  extend Findable::ClassMethods
+  include Paramable::InstanceMethods
+  #extend is for class methods
+  #include is for instance
   attr_accessor :name
   attr_reader :songs
 
@@ -19,6 +24,8 @@ class Artist
     @@artists
   end
 
+
+=begin
   def self.reset_all
     self.all.clear
   end
@@ -26,7 +33,7 @@ class Artist
   def self.count
     @@artists.count
   end
-
+=end
   def add_song(song)
     @songs << song
     song.artist = self
