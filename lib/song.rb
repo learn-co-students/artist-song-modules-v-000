@@ -1,9 +1,7 @@
-require 'pry'
-require_relative '../config/environment.rb'
-require_relative './concerns/ClassMethods.rb'
+# require 'pry'
 
 class Song
-  extend ClassMethods 
+  extend Memorable 
   
   attr_accessor :name
   attr_reader :artist
