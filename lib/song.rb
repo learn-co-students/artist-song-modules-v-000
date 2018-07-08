@@ -5,6 +5,10 @@ class Song
   attr_reader :artist
 
   @@songs = []
+  
+  extend Memorable::ClassMethods
+  extend Findable::ClassMethods
+  include Paramable::InstanceMethods
 
   def initialize
     @@songs << self
@@ -18,19 +22,12 @@ class Song
     @artist = artist
   end
 
-  def self.reset_all
-    @@songs.clear
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  def self.count
-    self.all.count
-  end
+  # def to_param
+  #   name.downcase.gsub(' ', '-')
+  # end
 
   def self.all
     @@songs
   end
+  
 end
