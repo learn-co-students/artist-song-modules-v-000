@@ -7,7 +7,8 @@ class Song
   @@songs = []
   
   extend Memorable::ClassMethods
-  #include FancyDance::InstanceMethods
+  extend Findable::ClassMethods
+  include Paramable::InstanceMethods
 
   def initialize
     @@songs << self
@@ -21,19 +22,12 @@ class Song
     @artist = artist
   end
 
-  # def self.reset_all
-  #   @@songs.clear
-  # end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  # def self.count
-  #   self.all.count
+  # def to_param
+  #   name.downcase.gsub(' ', '-')
   # end
 
   def self.all
     @@songs
   end
+  
 end

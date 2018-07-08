@@ -7,7 +7,8 @@ class Artist
   @@artists = []
   
   extend Memorable::ClassMethods
-  #include FancyDance::InstanceMethods
+  extend Findable::ClassMethods
+  include Paramable::InstanceMethods
 
   def self.find_by_name(name)
     @@artists.detect{|a| a.name == name}
@@ -22,14 +23,6 @@ class Artist
     @@artists
   end
 
-  # def self.reset_all
-  #   self.all.clear
-  # end
-
-  # def self.count
-  #   @@artists.count
-  # end
-
   def add_song(song)
     @songs << song
     song.artist = self
@@ -39,8 +32,8 @@ class Artist
     songs.each { |song| add_song(song) }
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
+  # def to_param
+  #   name.downcase.gsub(' ', '-')
+  # end
 
 end
