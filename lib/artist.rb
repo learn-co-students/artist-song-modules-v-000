@@ -1,33 +1,22 @@
-require 'pry'
-
 class Artist
+  extend Memorable
+  extend Findable
+
   attr_accessor :name
   attr_reader :songs
 
   @@artists = []
 
-  def self.find_by_name(name)
-    @@artists.detect{|a| a.name == name}
-  end
-
-  def initialize
+  def initialize#initializes an artist instance and an array of songs and saves the instance in the class variable array
     @@artists << self
     @songs = []
   end
 
-  def self.all
+  def self.all#display the class variable array storing all the instances of artists
     @@artists
   end
 
-  def self.reset_all
-    self.all.clear
-  end
-
-  def self.count
-    @@artists.count
-  end
-
-  def add_song(song)
+  def add_song(song)#adds a song of the artist instance, stores it in the artist songs array whiling teach the song it belongs to the artist
     @songs << song
     song.artist = self
   end
