@@ -1,6 +1,8 @@
 class Artist
-  extend Memorable
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   extend Findable
+  include Paramable
 
   attr_accessor :name
   attr_reader :songs
@@ -8,7 +10,7 @@ class Artist
   @@artists = []
 
   def initialize#initializes an artist instance and an array of songs and saves the instance in the class variable array
-    @@artists << self
+    super
     @songs = []
   end
 
@@ -23,10 +25,6 @@ class Artist
 
   def add_songs(songs)
     songs.each { |song| add_song(song) }
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
   end
 
 end
