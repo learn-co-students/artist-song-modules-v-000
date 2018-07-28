@@ -1,8 +1,8 @@
 require 'pry'
 
 class Song
-  attr_accessor :name
-  attr_reader :artist
+  attr_accessor :name, :artist
+  
 
   @@songs = []
 
@@ -14,9 +14,10 @@ class Song
     @@songs.detect{|a| a.name == name}
   end
 
-  def artist=(artist)
-    @artist = artist
-  end
+  #custome wirter method  
+  # def artist=(artist)
+  #   @artist = artist
+  # end
 
   def self.reset_all
     @@songs.clear
@@ -34,3 +35,7 @@ class Song
     @@songs
   end
 end
+
+# song = Song.new
+# binding.pry
+# artist = Song.artist("artist name")
