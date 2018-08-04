@@ -1,7 +1,7 @@
 module Findable
   module ClassMethods
-    def self.find_by_name(name)
-      self.all.detect{|o| o.name == name}
+    def find_by_name(name)
+      self.all.detect{|object| object.name == name}
     end
   end
 end
