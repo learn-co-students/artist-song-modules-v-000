@@ -1,15 +1,17 @@
 module Memorable
-  
-  @@artists = [] 
-  @@songs = []
-  
-  def reset_all
+  module ClassMethods
+ def reset_all
     self.all.clear
   end
 
   def count
-    @@artists.count
+    self.all.count
   end
-  
-  
+end 
+
+  module InstanceMethods 
+    def initialize 
+      self.class.all << self 
+    end 
+  end 
 end 
