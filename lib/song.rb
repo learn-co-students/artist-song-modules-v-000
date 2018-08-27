@@ -1,35 +1,23 @@
 require 'pry'
 
 class Song
+  extend Memorable::ClassMethods #namespacing
+  include Memorable::InstanceMethods #namespacing
+  extend Findable
+  include Paramable
+
   attr_accessor :name
   attr_reader :artist
 
+  #empty class variable array to store all instantiated Song objects in
   @@songs = []
 
-  def initialize
-    @@songs << self
-  end
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
+  #sets the song's artist to the artist specified
   def artist=(artist)
     @artist = artist
   end
 
-  def self.reset_all
-    @@songs.clear
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  def self.count
-    self.all.count
-  end
-
+  #returns a list of all Song objects that have been instantiated
   def self.all
     @@songs
   end
