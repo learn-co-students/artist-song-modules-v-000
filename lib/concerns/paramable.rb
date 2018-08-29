@@ -1,4 +1,4 @@
-module Memorable
+module Paramable
   
   module InstanceMethods
     
