@@ -1,4 +1,4 @@
-require 'pry'
+require_relative '../config/environment'
 
 class Artist
   extend Memorable::ClassMethods
@@ -16,7 +16,7 @@ class Artist
   end
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
