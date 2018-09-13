@@ -1,33 +1,21 @@
 require 'pry'
 
 class Song
-  attr_accessor :name
+  extend Memorable::ClassMethods 
+  include Memorable::InstanceMethods
+  extend Findable
+  include Paramable
+  include Nameable
+  # Note: putting the attr_accessor for :name in Nameable was NOT required.
+  # Also, I should not do that in general. I may need to add something else to attr_accessor.
+  # And it looks like I cannot put "super" in attr_accessor without causing an error.
+  
   attr_reader :artist
 
   @@songs = []
 
-  def initialize
-    @@songs << self
-  end
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
   def artist=(artist)
     @artist = artist
-  end
-
-  def self.reset_all
-    @@songs.clear
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
-
-  def self.count
-    self.all.count
   end
 
   def self.all
