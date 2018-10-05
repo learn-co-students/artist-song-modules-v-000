@@ -1,6 +1,8 @@
 require 'pry'
 
 class Song
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   
   extend Memorable
   extend Findable
@@ -13,7 +15,7 @@ class Song
   @@songs = []
 
   def initialize
-    @@songs << self
+  self.class.all << self
   end
 
   def self.all
