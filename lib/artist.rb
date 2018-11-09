@@ -1,8 +1,6 @@
-require 'pry'
-require_relative '../lib/concerns/memorable.rb'
-
 class Artist
-  extend Memorable, Findable
+  extend Memorable::ClassMethods, Findable
+  include Memorable::InstanceMethods, Paramable
   
   attr_accessor :name
   attr_reader :songs
@@ -10,7 +8,7 @@ class Artist
   @@artists = []
 
   def initialize
-    @@artists << self
+    super
     @songs = []
   end
 
@@ -25,9 +23,5 @@ class Artist
 
   def add_songs(songs)
     songs.each { |song| add_song(song) }
-  end
-
-  def to_param
-    name.downcase.gsub(' ', '-')
   end
 end
