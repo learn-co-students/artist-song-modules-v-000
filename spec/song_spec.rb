@@ -5,7 +5,7 @@ describe Song do
     Song.reset_all
   end
 
-  let!(:song) { Song.new }
+  let!(:song) {Song.new}
 
   it "can initialize a song" do
     expect(song).to be_a(Song)
