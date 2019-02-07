@@ -1,4 +1,4 @@
-require 'pry'
+#require 'pry'
 
 class Song
   attr_accessor :name
@@ -18,13 +18,15 @@ class Song
     @@songs
   end
 
-  def self.reset_all
-    self.all.clear
-  end
+  extend Memorable 
 
-  def self.count
-    self.all.count
-  end
+  #def self.reset_all
+    #self.all.clear
+  #end
+
+  #def self.count
+    #self.all.count
+  #end
 
   def artist=(artist)
     @artist = artist
