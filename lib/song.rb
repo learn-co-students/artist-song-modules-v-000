@@ -3,6 +3,10 @@
 class Song
   attr_accessor :name
   attr_reader :artist
+  
+  extend Memorable 
+  extend Findable::ClassMethods
+  
 
   @@songs = []
 
@@ -10,7 +14,7 @@ class Song
     @@songs << self
   end
    
-   extend Findable 
+ 
   
   #def self.find_by_name(name)
     #@@songs.detect{|a| a.name == name}
@@ -20,7 +24,7 @@ class Song
     #@@songs
   #end
 
-  extend Memorable 
+
 
   
 
