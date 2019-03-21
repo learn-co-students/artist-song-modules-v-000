@@ -1,7 +1,13 @@
-require_relative '../lib/concerns/memorable.rb'
+# require_relative '../lib/concerns/memorable.rb'
+# require_relative '../lib/concerns/findable.rb'
+# require_relative '../lib/concerns/paramable.rb'
+
+require_relative '../config/environment.rb'
 
 class Song
   extend Memorable
+  extend Findable
+  include Paramable
 
   attr_accessor :name
   attr_reader :artist
@@ -9,11 +15,7 @@ class Song
   @@songs = []
 
   def initialize
-    @@songs << self
-  end
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
+    self.class.all << self
   end
 
   def self.all
@@ -24,7 +26,4 @@ class Song
     @artist = artist
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
-  end
 end
