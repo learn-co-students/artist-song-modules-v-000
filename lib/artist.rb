@@ -1,7 +1,8 @@
 require 'pry'
 
 class Artist
-  extend Memorable
+  extend Memorable::ClassMethods
+  include Memorable::InstanceMethods
   include Paramable
 
   attr_accessor :name
@@ -10,7 +11,8 @@ class Artist
   @@artists = []
 
   def initialize
-    self.class.all << self
+    # self.class.all << self
+    super
     @songs = []
   end
 
