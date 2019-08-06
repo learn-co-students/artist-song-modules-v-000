@@ -1,30 +1,34 @@
 require 'pry'
 
 class Song
-    extend Memorable
+    extend Memorable::ClassMethods
+    extend Memorable::InstanceMethods
+    extend Findable
+    include Paramable
+
 
   attr_accessor :name
   attr_reader :artist
 
   @@songs = []
 
-  def initialize
-    @@songs << self
-  end
-
-  def self.find_by_name(name)
-    @@songs.detect{|a| a.name == name}
-  end
-
   def self.all
-    @@songs
+  @@songs
   end
 
   def artist=(artist)
     @artist = artist
   end
 
-  def to_param
-    name.downcase.gsub(' ', '-')
+
+  def add_artist(artist)
+    @artists << artist
+    artist.song = self
   end
+
+  def add_artists(artists)
+    artists.each { |artist| add_artist(artist) }
+
+end
+
 end
