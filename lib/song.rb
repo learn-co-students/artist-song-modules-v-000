@@ -2,7 +2,7 @@ require 'pry'
 
 class Song
     extend Memorable::ClassMethods
-    extend Memorable::InstanceMethods
+    include Memorable::InstanceMethods
     extend Findable
     include Paramable
 
@@ -28,7 +28,6 @@ class Song
 
   def add_artists(artists)
     artists.each { |artist| add_artist(artist) }
-
 end
 
 end
