@@ -1,5 +1,7 @@
 require 'pry'
 
+#look again - issues with submission and few tests
+
 class Artist
   attr_accessor :name
   attr_reader :songs
