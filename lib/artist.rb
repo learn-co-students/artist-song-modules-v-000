@@ -39,4 +39,9 @@ class Artist
   def to_param
     name.downcase.gsub(' ', '-')
   end
+
+  def what
+    "what do they want me to do differently?"
+  end
+
 end
